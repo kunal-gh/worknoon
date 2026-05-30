@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+dist
+coverage
+npm-debug.log*
+tsconfig.tsbuildinfo
+.env*
+
