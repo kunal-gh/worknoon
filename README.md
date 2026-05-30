@@ -229,7 +229,7 @@ The LLM output is never allowed to dictate the result of `D(o)`. The model's sin
 
 ## Synthetic CRM Data
 
-![Data model diagram](docs/assets/data-model.png)
+![Data model diagram](docs/assets/data-model.svg)
 
 The application initializes its internal SQLite database using [`backend/app/data/synthetic_crm.json`](backend/app/data/synthetic_crm.json).
 
