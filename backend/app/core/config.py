@@ -13,11 +13,13 @@ class Settings(BaseSettings):
     business_today: str = "2026-06-01"
     frontend_origin: str = "http://localhost:3000"
 
-    llm_provider: str = Field(default="gemini", pattern="^(gemini|groq|mock)$")
+    llm_provider: str = Field(default="gemini", pattern="^(gemini|groq|openai|mock)$")
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-2.0-flash"
     groq_api_key: str | None = None
     groq_model: str = "llama-3.3-70b-versatile"
+    openai_api_key: str | None = None
+    openai_model: str = "gpt-4o-mini"
 
     seed_data_path: Path = Path(__file__).resolve().parents[1] / "data" / "synthetic_crm.json"
     policy_path: Path = Path(__file__).resolve().parents[1] / "data" / "refund_policy.md"

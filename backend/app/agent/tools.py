@@ -75,7 +75,9 @@ def evaluate_refund_policy(db: Session, order_id: str | None, customer_email: st
     order = db.get(Order, order_id.upper()) if order_id else None
     customer = db.scalar(select(Customer).where(Customer.email == customer_email.lower())) if customer_email else None
     customer_email_matches = bool(order and customer and order.customer_id == customer.id)
-    evaluation = evaluate_order_policy(order, customer_email_matches, business_today())
+    # Pass fraud_risk so R10_HIGH_FRAUD_RISK can trigger for HIGH-risk accounts
+    fraud_risk = customer.fraud_risk if customer else None
+    evaluation = evaluate_order_policy(order, customer_email_matches, business_today(), fraud_risk=fraud_risk)
     return {
         "decision": evaluation.decision,
         "triggered_rules": evaluation.triggered_rules,

@@ -46,7 +46,8 @@
     {"id": "ORD-1027", "customer_id": "CUST-1011", "sku": "BEA-SET-13", "item_name": "Travel Grooming Set", "category": "beauty", "price": 54.00, "purchase_date": "2026-05-12", "delivery_date": "2026-05-15", "final_sale": false, "returned": true, "status": "returned", "condition_note": "original"},
     {"id": "ORD-1028", "customer_id": "CUST-1012", "sku": "APP-COA-61", "item_name": "All Weather Shell Coat", "category": "apparel", "price": 265.00, "purchase_date": "2026-05-21", "delivery_date": "2026-05-26", "final_sale": false, "returned": false, "status": "delivered", "condition_note": "original"},
     {"id": "ORD-1029", "customer_id": "CUST-1013", "sku": "DIG-COUR-44", "item_name": "Analytics Course Download", "category": "digital", "price": 199.00, "purchase_date": "2026-05-27", "delivery_date": "2026-05-27", "final_sale": false, "returned": false, "status": "delivered", "condition_note": "original"},
-    {"id": "ORD-1030", "customer_id": "CUST-1015", "sku": "HOME-TBL-82", "item_name": "Oak Console Table", "category": "home", "price": 520.00, "purchase_date": "2026-05-05", "delivery_date": "2026-05-11", "final_sale": false, "returned": false, "status": "delivered", "condition_note": "damaged"}
+    {"id": "ORD-1030", "customer_id": "CUST-1015", "sku": "HOME-TBL-82", "item_name": "Oak Console Table", "category": "home", "price": 520.00, "purchase_date": "2026-05-05", "delivery_date": "2026-05-11", "final_sale": false, "returned": false, "status": "delivered", "condition_note": "damaged"},
+    {"id": "ORD-1031", "customer_id": "CUST-1008", "sku": "ELEC-SPK-44", "item_name": "PortaBeat Wireless Speaker", "category": "electronics", "price": 149.00, "purchase_date": "2026-05-25", "delivery_date": "2026-05-28", "final_sale": false, "returned": false, "status": "delivered", "condition_note": "original"}
   ]
 }
 

@@ -17,7 +17,12 @@ class PolicyEvaluation:
     confidence: float
 
 
-def evaluate_order_policy(order: Order | None, customer_email_matches: bool, today: date) -> PolicyEvaluation:
+def evaluate_order_policy(
+    order: Order | None,
+    customer_email_matches: bool,
+    today: date,
+    fraud_risk: str | None = None,
+) -> PolicyEvaluation:
     if order is None:
         return PolicyEvaluation(
             decision="NEEDS_INFO",
@@ -58,7 +63,9 @@ def evaluate_order_policy(order: Order | None, customer_email_matches: bool, tod
         triggered.append("R1_WINDOW_30_DAYS")
         facts.append(f"The order was delivered {days_since_delivery} days ago, outside the 30-day refund window.")
 
-    if order.condition_note.lower() in {"damaged", "opened", "used"}:
+    # Defensive: guard against None or empty condition_note
+    condition_note = (order.condition_note or "").lower()
+    if condition_note in {"damaged", "opened", "used"}:
         triggered.append("R8_CONDITION_REVIEW")
         facts.append("The item condition requires manual review before any refund can be issued.")
 
@@ -102,6 +109,24 @@ def evaluate_order_policy(order: Order | None, customer_email_matches: bool, tod
             confidence=0.93,
         )
 
+    # R10: HIGH fraud-risk customers on orders over $100 require human escalation.
+    # This catches accounts with a pattern of fraudulent claims before auto-approving.
+    if fraud_risk and fraud_risk.upper() == "HIGH" and order.price > 100:
+        triggered.append("R10_HIGH_FRAUD_RISK")
+        facts.append(
+            f"This account is flagged as HIGH fraud-risk. "
+            f"Refund requests over $100 require human review for such accounts."
+        )
+        risks.append("HIGH_FRAUD_RISK")
+        return PolicyEvaluation(
+            decision="ESCALATED",
+            triggered_rules=triggered,
+            explanation_facts=facts,
+            risk_flags=risks,
+            requires_human_review=True,
+            confidence=0.91,
+        )
+
     return PolicyEvaluation(
         decision="APPROVED",
         triggered_rules=["R9_ELIGIBLE_STANDARD_REFUND"],
@@ -112,4 +137,3 @@ def evaluate_order_policy(order: Order | None, customer_email_matches: bool, tod
         requires_human_review=False,
         confidence=0.96,
     )
-

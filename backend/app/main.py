@@ -1,3 +1,6 @@
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -9,7 +12,21 @@ from app.db.seed import init_db, seed_if_empty
 
 settings = get_settings()
 
-app = FastAPI(title=settings.app_name, version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    """Application lifespan: create tables and seed data on startup."""
+    init_db()
+    db = SessionLocal()
+    try:
+        seed_if_empty(db)
+    finally:
+        db.close()
+    yield
+    # Shutdown: nothing to clean up for SQLite
+
+
+app = FastAPI(title=settings.app_name, version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,16 +36,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.on_event("startup")
-def startup() -> None:
-    init_db()
-    db = SessionLocal()
-    try:
-        seed_if_empty(db)
-    finally:
-        db.close()
-
-
 app.include_router(router)
-
