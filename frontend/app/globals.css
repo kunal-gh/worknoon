@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #061817;
+  --bg-2: #092421;
+  --panel: rgba(229, 255, 250, 0.08);
+  --panel-strong: rgba(229, 255, 250, 0.13);
+  --line: rgba(174, 255, 241, 0.18);
+  --line-strong: rgba(174, 255, 241, 0.34);
+  --text: #effffb;
+  --muted: #a8c9c3;
+  --soft: #d8fff7;
+  --aqua: #65f4dc;
+  --sea: #12a897;
+  --kelp: #0d5d55;
+  --pearl: #f4fbf8;
+  --approve: #78f0b1;
+  --deny: #ff8f9f;
+  --escalate: #ffd166;
+  --info: #8ed8ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    linear-gradient(115deg, rgba(6, 24, 23, 0.98), rgba(9, 36, 33, 0.94)),
+    repeating-linear-gradient(100deg, rgba(101, 244, 220, 0.035) 0 1px, transparent 1px 42px);
+  font-family: var(--font-manrope), sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(101, 244, 220, 0.28);
+}
+
+.console-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.console-shell::before {
+  animation: current-flow 18s ease-in-out infinite alternate;
+  background:
+    linear-gradient(130deg, transparent 0%, rgba(101, 244, 220, 0.08) 28%, transparent 54%),
+    linear-gradient(40deg, transparent 4%, rgba(244, 251, 248, 0.06) 34%, transparent 62%);
+  content: "";
+  inset: -18%;
+  pointer-events: none;
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  z-index: -2;
+}
+
+.console-shell::after {
+  background-image:
+    linear-gradient(rgba(174, 255, 241, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(174, 255, 241, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 82%, transparent);
+  opacity: 0.34;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
+}
+
+.glass-panel {
+  background: linear-gradient(180deg, var(--panel-strong), rgba(229, 255, 250, 0.055));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.thin-scrollbar {
+  scrollbar-color: rgba(101, 244, 220, 0.34) transparent;
+  scrollbar-width: thin;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(101, 244, 220, 0.28);
+  border-radius: 999px;
+}
+
+@keyframes current-flow {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(2%, 1.5%, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
