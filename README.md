@@ -8,7 +8,9 @@
 
 > A finished, fully containerized AI customer support product that processes, denies, or escalates e-commerce refunds with a clean customer chat UI and a live admin reasoning dashboard.
 
-![Console screenshot](docs/assets/console-screenshot.png)
+![Console — approved refund with live agent trace](docs/assets/console-screenshot.png)
+
+![Trace panel — injection detected, guardrail lock, backend decision](docs/assets/trace-stream.png)
 
 ## Contents
 
@@ -168,7 +170,7 @@ The agent loop is intentionally explicit, state-managed, and highly inspectable.
 7. **Response composition**: Supplies the locked decision and context facts to the LLM to format a concise, empathetic customer response.
 8. **Trace stream**: Serializes every processing stage and database lookup into structured JSON and emits them to the admin dashboard through Server-Sent Events (SSE).
 
-![Trace stream animation](docs/assets/trace-stream.gif)
+![Trace stream — live SSE events with injection warning](docs/assets/trace-stream.png)
 
 The admin view shows structured reasoning artifacts rather than raw chain-of-thought text. That is deliberate: it provides operators with exact operational visibility (displaying API outcomes and JSON states) without leaking hidden prompts or unpredictable model reasoning.
 
@@ -381,7 +383,7 @@ Trustworthy refund behavior
 |       |-- agent-loop.png
 |       |-- data-model.svg
 |       |-- console-screenshot.png
-|       `-- trace-stream.gif
+|       `-- trace-stream.png
 |-- frontend/
 |   |-- app/
 |   |-- components/
