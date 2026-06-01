@@ -1,29 +1,30 @@
 import type { Metadata } from "next";
-import { Manrope, Sora } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-inter",
   display: "swap",
+  weight: ["300", "400", "500", "600"],
 });
 
-const sora = Sora({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-display",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Worknoon Refund Agent",
-  description: "AI customer support refund console with structured audit traces.",
+  title: "Worknoon — Refund Agent",
+  description: "AI-powered refund decision engine with deterministic policy enforcement and live audit traces.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${sora.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>{children}</body>
     </html>
   );
 }
-
