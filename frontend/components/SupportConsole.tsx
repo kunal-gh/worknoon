@@ -183,13 +183,13 @@ export function SupportConsole() {
 
   /* ── Render ──────────────────────────────────────────────────────────── */
   return (
-    <main className="shell">
+    <main className="shell" style={{ height: "100vh", overflow: "hidden" }}>
       <div
         style={{
           maxWidth: 1440,
           margin: "0 auto",
           padding: "0 24px 24px",
-          minHeight: "100vh",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           gap: 0,
@@ -282,6 +282,8 @@ export function SupportConsole() {
             gap: 16,
             paddingTop: 20,
             flex: 1,
+            minHeight: 0,
+            overflow: "hidden",
           }}
         >
           {/* ── LEFT: Chat panel ──────────────────────────────────────── */}
@@ -290,7 +292,7 @@ export function SupportConsole() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...ease, delay: 0.06 }}
             className="panel"
-            style={{ display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 640 }}
+            style={{ display: "flex", flexDirection: "column", overflow: "hidden", height: "100%", minHeight: 0 }}
           >
             {/* Chat header */}
             <div
@@ -471,7 +473,7 @@ export function SupportConsole() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...ease, delay: 0.12 }}
-            style={{ display: "flex", flexDirection: "column", gap: 16 }}
+            style={{ display: "flex", flexDirection: "column", gap: 16, height: "100%", minHeight: 0, overflow: "hidden" }}
           >
             {/* Metrics card */}
             <div
@@ -499,7 +501,7 @@ export function SupportConsole() {
             {/* Trace timeline */}
             <div
               className="panel"
-              style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 400 }}
+              style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minHeight: 0 }}
             >
               <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--border)" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
