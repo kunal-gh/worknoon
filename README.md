@@ -379,7 +379,7 @@ Trustworthy refund behavior
 |   `-- assets/
 |       |-- architecture.png
 |       |-- agent-loop.png
-|       |-- data-model.png
+|       |-- data-model.svg
 |       |-- console-screenshot.png
 |       `-- trace-stream.gif
 |-- frontend/
