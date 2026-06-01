@@ -8,9 +8,7 @@
 
 > A finished, fully containerized AI customer support product that processes, denies, or escalates e-commerce refunds with a clean customer chat UI and a live admin reasoning dashboard.
 
-![Console — approved refund with live agent trace](docs/assets/console-screenshot.png)
-
-![Trace panel — injection detected, guardrail lock, backend decision](docs/assets/trace-stream.png)
+![Console — APPROVED refund with live agent trace, rules: 1, confidence: 96%](docs/assets/console-screenshot.png)
 
 ## Contents
 
@@ -170,9 +168,37 @@ The agent loop is intentionally explicit, state-managed, and highly inspectable.
 7. **Response composition**: Supplies the locked decision and context facts to the LLM to format a concise, empathetic customer response.
 8. **Trace stream**: Serializes every processing stage and database lookup into structured JSON and emits them to the admin dashboard through Server-Sent Events (SSE).
 
-![Trace stream — live SSE events with injection warning](docs/assets/trace-stream.png)
+![Trace stream — live SSE events per pipeline stage](docs/assets/screenshot-injection.png)
 
 The admin view shows structured reasoning artifacts rather than raw chain-of-thought text. That is deliberate: it provides operators with exact operational visibility (displaying API outcomes and JSON states) without leaking hidden prompts or unpredictable model reasoning.
+
+## UI Gallery
+
+All screenshots below are real browser captures of the live running application.
+
+**Initial state — ready for a refund case**
+
+![Initial state — empty chat, scenario buttons, waiting for trace events](docs/assets/screenshot-initial.png)
+
+**APPROVED — ORD-1001, asha.rao@example.com (triggers R9)**
+
+![APPROVED — valid refund within 30 days, not final sale, below $500](docs/assets/console-screenshot.png)
+
+**DENIED — ORD-1002, final sale item (triggers R2)**
+
+![DENIED — final sale item, policy rule R2 enforced](docs/assets/screenshot-denied.png)
+
+**ESCALATED — ORD-1003, $720 order (triggers R4)**
+
+![ESCALATED — order above $500 threshold, R4 human review required](docs/assets/screenshot-escalated.png)
+
+**ESCALATED — ORD-1031, HIGH fraud risk account (triggers R10)**
+
+![ESCALATED — HIGH fraud risk account, R10 human review required](docs/assets/screenshot-fraud.png)
+
+**DENIED — Prompt injection attack blocked, policy still enforced**
+
+![DENIED + injection_detected:true — 35-pattern guardrail caught override attempt](docs/assets/screenshot-injection.png)
 
 ## Deterministic Policy Engine
 
