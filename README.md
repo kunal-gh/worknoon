@@ -49,7 +49,7 @@ Once the terminal shows both containers are running, open your browser:
 - **Support Console UI**: [http://localhost:3000](http://localhost:3000)
 - **Backend Health Check**: [http://localhost:8000/api/health](http://localhost:8000/api/health)
 
-*(If ports 3000 or 8000 are occupied on your machine, you can override them inline: `API_PORT=8010 FRONTEND_PORT=3010 FRONTEND_ORIGIN=http://localhost:3010 NEXT_PUBLIC_API_BASE_URL=http://localhost:8010 docker-compose up --build`)*
+*(If ports 3000 or 8000 are occupied on your machine, simply add `API_PORT=8010`, `FRONTEND_PORT=3010`, `FRONTEND_ORIGIN=http://localhost:3010`, and `NEXT_PUBLIC_API_BASE_URL=http://localhost:8010` to your `.env` file and run `docker-compose up --build`)*
 
 ---
 
@@ -128,12 +128,11 @@ When the agent executes its dynamic tools, it performs actual SQLAlchemy ORM que
 | **Containerization**| Docker Compose | Guarantees the exact same execution environment for the evaluation team. |
 
 ### Verifying the System
-The system architecture and logic are physically tested and proven by a robust Pytest suite. To verify the system's resilience yourself:
+The system architecture and logic are physically tested and proven by a robust Pytest suite. To verify the system's resilience yourself while the containers are running, execute:
 ```bash
-cd backend
-python -m pytest
+docker-compose exec backend pytest
 ```
-This will execute 56 automated unit tests that validate the 10 policy rules, test the 35-pattern injection scanner, and ensure the LLM extractor handles malformed data gracefully.
+This will run 56 automated unit tests inside the backend container to validate the 10 policy rules, test the 35-pattern injection scanner, and ensure the LLM extractor handles malformed data gracefully.
 
 ---
 *Built for the Worknoon AI Engineer Evaluation - June 2026*
