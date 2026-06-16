@@ -49,7 +49,7 @@ Once the terminal shows both containers are running, open your browser:
 - **Support Console UI**: [http://localhost:3000](http://localhost:3000)
 - **Backend Health Check**: [http://localhost:8000/api/health](http://localhost:8000/api/health)
 
-*(If ports 3000 or 8000 are occupied on your machine, you can override them inline: `API_PORT=8010 FRONTEND_PORT=3010 NEXT_PUBLIC_API_BASE_URL=http://localhost:8010 docker-compose up --build`)*
+*(If ports 3000 or 8000 are occupied on your machine, you can override them inline: `API_PORT=8010 FRONTEND_PORT=3010 FRONTEND_ORIGIN=http://localhost:3010 NEXT_PUBLIC_API_BASE_URL=http://localhost:8010 docker-compose up --build`)*
 
 ---
 
