@@ -46,10 +46,10 @@ This single command builds the containers, auto-generates the SQLite database, s
 
 ### 3. Open the Dashboard
 Once the terminal shows both containers are running, open your browser:
-- **Support Console UI**: [http://localhost:3000](http://localhost:3000)
-- **Backend Health Check**: [http://localhost:8000/api/health](http://localhost:8000/api/health)
+- **Support Console UI**: [http://localhost:3085](http://localhost:3085)
+- **Backend Health Check**: [http://localhost:8085/api/health](http://localhost:8085/api/health)
 
-*(If ports 3000 or 8000 are occupied on your machine, simply add `API_PORT=8010`, `FRONTEND_PORT=3010`, `FRONTEND_ORIGIN=http://localhost:3010`, and `NEXT_PUBLIC_API_BASE_URL=http://localhost:8010` to your `.env` file and run `docker-compose up --build`)*
+*(If ports 3085 or 8085 are occupied on your machine, simply add `API_PORT=8090`, `FRONTEND_PORT=3090`, `FRONTEND_ORIGIN=http://localhost:3090`, and `NEXT_PUBLIC_API_BASE_URL=http://localhost:8090` to your `.env` file and run `docker-compose up --build`)*
 
 ---
 
